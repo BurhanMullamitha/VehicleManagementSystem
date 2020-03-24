@@ -1055,7 +1055,7 @@ public class LinkedListClient {
 		frame.getContentPane().add(navigationPanel);
 		navigationPanel.setLayout(null);
 		home.setIcon(
-				new ImageIcon("/Users/burhanmullamitha/eclipse-workspace/VehicleManagementSystem/images/logo.gif"));
+				new ImageIcon("/Users/burhanmullamitha/CollegeStuff/Git Projects/VehicleManagementSystem/VehicleMgmtSystem/images/logo.gif"));
 		home.setHorizontalAlignment(SwingConstants.CENTER);
 
 		home.setForeground(Color.WHITE);
