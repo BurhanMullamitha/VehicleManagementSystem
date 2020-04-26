@@ -1,4 +1,6 @@
 
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -12,6 +14,13 @@ public class TreeSetImplementation extends UnicastRemoteObject implements TreeSe
 
 	public TreeSetImplementation() throws RemoteException {
 		super();
+		try {
+			ObjectInputStream in = new ObjectInputStream(new FileInputStream("data/VehicleInfo(TreeSet).dat"));
+			VehicleSet = (Set<TreeNode>) in.readObject();
+			in.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 
 	@Override

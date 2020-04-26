@@ -1,5 +1,7 @@
 
 
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.LinkedList;
@@ -12,6 +14,13 @@ public class LinkedListImplementation extends UnicastRemoteObject implements Lin
 
 	protected LinkedListImplementation() throws RemoteException {
 		super();
+		try {
+			ObjectInputStream in = new ObjectInputStream(new FileInputStream("data/VehicleInfo(LinkedList).dat"));
+			VehicleList = (List<LinkNode>) in.readObject();
+			in.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 
 	@Override

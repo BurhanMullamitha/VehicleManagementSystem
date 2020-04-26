@@ -32,6 +32,9 @@ import java.awt.Font;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+
 import javax.swing.JRadioButton;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
@@ -194,10 +197,23 @@ public class LinkedListClient {
 		}
 		frame = new JFrame();
 		frame.addWindowListener(new WindowAdapter() {
+			
 			@Override
 			public void windowActivated(WindowEvent e) {
 				setVehicleID();
 				getAllVehicleIDs();
+			}
+			
+			@Override
+			public void windowClosing(WindowEvent e) {
+				try {
+					ObjectOutputStream out = new ObjectOutputStream(
+							new FileOutputStream("data/VehicleInfo(LinkedList).dat"));
+					out.writeObject(linkedlistInt.allVehicleData());
+					out.close();
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, ex);
+				}
 			}
 
 		});
@@ -1095,6 +1111,14 @@ public class LinkedListClient {
 		btnClose = new JButton("X");
 		btnClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					ObjectOutputStream out = new ObjectOutputStream(
+							new FileOutputStream("data/VehicleInfo(LinkedList).dat"));
+					out.writeObject(linkedlistInt.allVehicleData());
+					out.close();
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, ex);
+				}
 				System.exit(0);
 			}
 		});
